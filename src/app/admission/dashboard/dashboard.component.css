@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gray-100 flex justify-center items-center min-h-screen;
+}
+
+.container {
+    @apply w-full max-w-md bg-white p-8 shadow-lg rounded-lg;
+}
+
+.school-image {
+    @apply mx-auto w-24 mb-4;
+}
+
+.thank-you-message {
+    @apply text-center;
+}
+
+h1 {
+    @apply text-2xl font-bold text-center mb-2;
+}
+
+h2 {
+    @apply text-lg font-medium text-center mb-4;
+}
+
+label {
+    @apply block text-sm font-medium;
+}
+
+input, textarea, select {
+    @apply w-full px-4 py-2 border rounded-lg;
+}
+
+button {
+    @apply w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600;
+}
+
+button:hover {
+    @apply bg-blue-600;
+}
+
+button[type="submit"] {
+    @apply w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600;
+}

@@ -1,0 +1,56 @@
+<!-- <div class="container max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg">
+    <h1 class="text-2xl font-bold text-center mb-4">CATSU Online Admission System Admin</h1>
+    
+    <div class="flex justify-center mb-4">
+      <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" (click)="fetchAdmissionStudents()">View Admissions</button>
+      <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700" (click)="fetchEnrollmentStudents()">View Enrollments</button>
+    </div>
+    
+    <ul id="students-list" class="list-disc list-inside">
+      <li *ngFor="let student of students" (click)="showStudentDetails(student)" class="cursor-pointer text-blue-500 hover:underline">
+        {{ student.first_name }} {{ student.last_name }}
+      </li>
+    </ul>
+    
+    <div id="student-details" class="mt-6" *ngIf="selectedStudent">
+      <h1 class="font-semibold text-center text-xl mb-4">{{ selectedStudent.first_name }} {{ selectedStudent.last_name }}</h1>
+      <p *ngIf="selectedStudent.admission_type"><strong>Admission Type:</strong> {{ selectedStudent.admission_type }}</p>
+      <p *ngIf="selectedStudent.email"><strong>Email:</strong> {{ selectedStudent.email }}</p>
+      <p *ngIf="selectedStudent.exam_result"><strong>Exam Result:</strong> {{ selectedStudent.exam_result }}</p>
+      
+      <div class="mt-4">
+        <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 mr-2" (click)="updateApprovalStatus(true)">Approve</button>
+        <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700" (click)="updateApprovalStatus(false)">Reject</button>
+      </div>
+      <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" (click)="backToList()">Back to List</button>
+    </div>
+  </div>
+   -->
+
+   <div class="container max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg">
+    <h1 class="text-2xl font-bold text-center mb-4">CATSU Online Admission System Admin</h1>
+    
+    <div class="flex justify-center mb-4">
+      <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" (click)="fetchAdmissionStudents()">View Admissions</button>
+      <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700" (click)="fetchEnrollmentStudents()">View Enrollments</button>
+    </div>
+    
+    <ul id="students-list" class="list-disc list-inside">
+      <li *ngFor="let student of students" (click)="showStudentDetails(student)" class="cursor-pointer text-blue-500 hover:underline">
+        {{ student.first_name }} {{ student.last_name }}
+      </li>
+    </ul>
+    
+    <div id="student-details" class="mt-6" *ngIf="selectedStudent">
+      <h1 class="font-semibold text-center text-xl mb-4">{{ selectedStudent.first_name }} {{ selectedStudent.last_name }}</h1>
+      <p *ngIf="selectedStudent.admission_type"><strong>Admission Type:</strong> {{ selectedStudent.admission_type }}</p>
+      <p *ngIf="selectedStudent.email"><strong>Email:</strong> {{ selectedStudent.email }}</p>
+      <p *ngIf="selectedStudent.exam_result"><strong>Exam Result:</strong> {{ selectedStudent.exam_result }}</p>
+      
+      <div class="mt-4">
+        <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 mr-2" (click)="updateApprovalStatus(true)">Approve</button>
+        <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700" (click)="updateApprovalStatus(false)">Reject</button>
+      </div>
+      <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" (click)="backToList()">Back to List</button>
+    </div>
+  </div>

@@ -1,0 +1,17 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div #container class="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
+      <img src="assets/catsu.png" alt="Catanduanes State University" class="mx-auto w-24 mb-4">
+      <h1 class="text-2xl font-bold text-center mb-2">Catanduanes State University</h1>
+      <h2 class="text-lg font-medium text-center mb-4">Online Admission System</h2>
+      <p class="text-center mb-4">Applying for:</p>
+      <div class="flex justify-around mb-4 space-x-2">
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" (click)="showForm('elementary')">Elementary</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" (click)="showForm('junior')">Junior High School</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" (click)="showForm('senior')">Senior High School</button>
+        <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" (click)="showForm('higher')">Higher Education</button>
+      </div>
+      <div #formContainer id="form-container" class="space-y-4"></div>
+      <button id="login-page-button" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mt-4 w-full" (click)="showLoginForm()">Login</button>
+    </div>
+  </div>
+  

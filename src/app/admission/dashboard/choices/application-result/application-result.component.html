@@ -1,0 +1,15 @@
+<div class="container w-full mx-auto p-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full mx-auto">
+      <div class="flex justify-between items-center mb-4">
+        <button class="text-purple-500 bg-white px-4 py-2 rounded-full hover:bg-white hover:text-purple-600 focus:outline-none" (click)="goBack()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="text-3xl font-bold text-center text-purple-500 flex-grow">Application Result</h1>
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50" disabled>
+      </div>
+      <div id="result-container" class="mt-6"></div>
+    </div>
+  </div>
