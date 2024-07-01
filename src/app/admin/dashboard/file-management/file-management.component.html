@@ -1,56 +1,104 @@
-<!-- <div class="container max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg">
-    <h1 class="text-2xl font-bold text-center mb-4">CATSU Online Admission System Admin</h1>
+<div class="container max-w-6xl mx-auto p-8 bg-white shadow-md rounded-lg">
+    <h1 class="text-3xl font-bold text-center mb-4">CATSU Online Admission System Admin</h1>
     
     <div class="flex justify-center mb-4">
       <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" (click)="fetchAdmissionStudents()">View Admissions</button>
       <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700" (click)="fetchEnrollmentStudents()">View Enrollments</button>
     </div>
     
-    <ul id="students-list" class="list-disc list-inside">
-      <li *ngFor="let student of students" (click)="showStudentDetails(student)" class="cursor-pointer text-blue-500 hover:underline">
-        {{ student.first_name }} {{ student.last_name }}
-      </li>
-    </ul>
+    <div *ngIf="students.length > 0" class="overflow-x-auto">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2 px-4 border">ID</th>
+            <th class="py-2 px-4 border">First Name</th>
+            <th class="py-2 px-4 border">Last Name</th>
+            <th class="py-2 px-4 border">Email</th>
+            <th class="py-2 px-4 border">Admission Type</th>
+            <th class="py-2 px-4 border">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of students" class="border-t">
+            <td class="py-2 px-4 border">{{ student.id }}</td>
+            <td class="py-2 px-4 border">{{ student.given_name }}</td>
+            <td class="py-2 px-4 border">{{ student.last_name }}</td>
+            <td class="py-2 px-4 border">{{ student.email }}</td>
+            <td class="py-2 px-4 border">{{ student.admission_type }}</td>
+            <td class="py-2 px-4 border">
+              <button class="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-700" (click)="showStudentDetails(student)">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     
-    <div id="student-details" class="mt-6" *ngIf="selectedStudent">
-      <h1 class="font-semibold text-center text-xl mb-4">{{ selectedStudent.first_name }} {{ selectedStudent.last_name }}</h1>
-      <p *ngIf="selectedStudent.admission_type"><strong>Admission Type:</strong> {{ selectedStudent.admission_type }}</p>
-      <p *ngIf="selectedStudent.email"><strong>Email:</strong> {{ selectedStudent.email }}</p>
-      <p *ngIf="selectedStudent.exam_result"><strong>Exam Result:</strong> {{ selectedStudent.exam_result }}</p>
+    <div *ngIf="selectedStudent" class="mt-6 p-4 bg-gray-100 rounded-lg shadow">
+      <h2 class="text-2xl font-semibold mb-4 text-center">{{ selectedStudent.given_name }} {{ selectedStudent.last_name }}</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <p><strong>ID:</strong> {{ selectedStudent.id }}</p>
+        <p><strong>Admission Type:</strong> {{ selectedStudent.admission_type }}</p>
+        <p><strong>Given Name:</strong> {{ selectedStudent.given_name }}</p>
+        <p><strong>Middle Name:</strong> {{ selectedStudent.middle_name }}</p>
+        <p><strong>Last Name:</strong> {{ selectedStudent.last_name }}</p>
+        <p><strong>Mother Name:</strong> {{ selectedStudent.mother_name }}</p>
+        <p><strong>Mother Occupation:</strong> {{ selectedStudent.mother_occupation }}</p>
+        <p><strong>Contact Number:</strong> {{ selectedStudent.contact_number }}</p>
+        <p><strong>Guardian:</strong> {{ selectedStudent.guardian }}</p>
+        <p><strong>Address:</strong> {{ selectedStudent.address }}</p>
+        <p><strong>Previous School:</strong> {{ selectedStudent.previous_school }}</p>
+        <p><strong>Strand:</strong> {{ selectedStudent.strand }}</p>
+        <p><strong>Applicant Type:</strong> {{ selectedStudent.applicant_type }}</p>
+        <p><strong>School:</strong> {{ selectedStudent.school }}</p>
+        <p><strong>Email:</strong> {{ selectedStudent.email }}</p>
+        <p><strong>Course:</strong> {{ selectedStudent.course }}</p>
+        <p><strong>Username:</strong> {{ selectedStudent.username }}</p>
+        <p><strong>Adcon Number:</strong> {{ selectedStudent.adcon_number }}</p>
+        <p><strong>Suffix:</strong> {{ selectedStudent.suffix }}</p>
+        <p><strong>Gender:</strong> {{ selectedStudent.gender }}</p>
+        <p><strong>Marital Status:</strong> {{ selectedStudent.marital_status }}</p>
+        <p><strong>Date of Birth:</strong> {{ selectedStudent.date_of_birth }}</p>
+        <p><strong>Place of Birth:</strong> {{ selectedStudent.place_of_birth }}</p>
+        <p><strong>Country of Birth:</strong> {{ selectedStudent.country_of_birth }}</p>
+        <p><strong>Country of Nationality:</strong> {{ selectedStudent.country_of_nationality }}</p>
+        <p><strong>Religious Affiliation:</strong> {{ selectedStudent.religious_affiliation }}</p>
+        <p><strong>Foreign Student:</strong> {{ selectedStudent.foreign_student }}</p>
+        <p><strong>LRN:</strong> {{ selectedStudent.lrn }}</p>
+        <p><strong>Language Spoken:</strong> {{ selectedStudent.language_spoken }}</p>
+        <p><strong>Foreign Language Spoken:</strong> {{ selectedStudent.foreign_language_spoken }}</p>
+        <p><strong>Working Student:</strong> {{ selectedStudent.working_student }}</p>
+        <p><strong>Photo:</strong> <img [src]="selectedStudent.photo" alt="Photo" class="max-w-xs"/></p>
+        <p><strong>Mobile Number:</strong> {{ selectedStudent.mobile_number }}</p>
+        <p><strong>Telephone Number:</strong> {{ selectedStudent.telephone_number }}</p>
+        <p><strong>Present Address:</strong> {{ selectedStudent.present_address }}</p>
+        <p><strong>Country:</strong> {{ selectedStudent.country }}</p>
+        <p><strong>Province:</strong> {{ selectedStudent.province }}</p>
+        <p><strong>City:</strong> {{ selectedStudent.city }}</p>
+        <p><strong>Barangay:</strong> {{ selectedStudent.barangay }}</p>
+        <p><strong>Zip Code:</strong> {{ selectedStudent.zip_code }}</p>
+        <p><strong>Permanent Address:</strong> {{ selectedStudent.permanent_address }}</p>
+        <p><strong>Same as Present Address:</strong> {{ selectedStudent.same_as_present }}</p>
+        <p><strong>Program:</strong> {{ selectedStudent.program }}</p>
+        <p><strong>Preferred Campus:</strong> {{ selectedStudent.preferred_campus }}</p>
+        <p><strong>Preferred Term:</strong> {{ selectedStudent.preferred_term }}</p>
+        <p><strong>Preferred Year Level:</strong> {{ selectedStudent.preferred_year_level }}</p>
+        <p><strong>High School:</strong> {{ selectedStudent.high_school }}</p>
+        <p><strong>High School Year:</strong> {{ selectedStudent.high_school_year }}</p>
+        <p><strong>College:</strong> {{ selectedStudent.college }}</p>
+        <p><strong>College Year:</strong> {{ selectedStudent.college_year }}</p>
+        <p><strong>Degree:</strong> {{ selectedStudent.degree }}</p>
+        <p><strong>Graduate School:</strong> {{ selectedStudent.graduate_school }}</p>
+        <p><strong>Graduate School Year:</strong> {{ selectedStudent.graduate_school_year }}</p>
+        <p><strong>Graduate Degree:</strong> {{ selectedStudent.graduate_degree }}</p>
+        <p><strong>TOR:</strong> <a [href]="selectedStudent.tor" target="_blank">{{ selectedStudent.tor }}</a></p>
+        <p><strong>Created At:</strong> {{ selectedStudent.created_at }}</p>
+      </div>
       
-      <div class="mt-4">
+      <div class="mt-4 flex justify-center">
         <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 mr-2" (click)="updateApprovalStatus(true)">Approve</button>
         <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700" (click)="updateApprovalStatus(false)">Reject</button>
       </div>
       <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" (click)="backToList()">Back to List</button>
     </div>
   </div>
-   -->
-
-   <div class="container max-w-2xl mx-auto p-8 bg-white shadow-md rounded-lg">
-    <h1 class="text-2xl font-bold text-center mb-4">CATSU Online Admission System Admin</h1>
-    
-    <div class="flex justify-center mb-4">
-      <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" (click)="fetchAdmissionStudents()">View Admissions</button>
-      <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700" (click)="fetchEnrollmentStudents()">View Enrollments</button>
-    </div>
-    
-    <ul id="students-list" class="list-disc list-inside">
-      <li *ngFor="let student of students" (click)="showStudentDetails(student)" class="cursor-pointer text-blue-500 hover:underline">
-        {{ student.first_name }} {{ student.last_name }}
-      </li>
-    </ul>
-    
-    <div id="student-details" class="mt-6" *ngIf="selectedStudent">
-      <h1 class="font-semibold text-center text-xl mb-4">{{ selectedStudent.first_name }} {{ selectedStudent.last_name }}</h1>
-      <p *ngIf="selectedStudent.admission_type"><strong>Admission Type:</strong> {{ selectedStudent.admission_type }}</p>
-      <p *ngIf="selectedStudent.email"><strong>Email:</strong> {{ selectedStudent.email }}</p>
-      <p *ngIf="selectedStudent.exam_result"><strong>Exam Result:</strong> {{ selectedStudent.exam_result }}</p>
-      
-      <div class="mt-4">
-        <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 mr-2" (click)="updateApprovalStatus(true)">Approve</button>
-        <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700" (click)="updateApprovalStatus(false)">Reject</button>
-      </div>
-      <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" (click)="backToList()">Back to List</button>
-    </div>
-  </div>
+  

@@ -22,7 +22,7 @@ export class FileManagementComponent implements OnInit {
     this.isAdmission = true;
     const { data, error } = await this.supabaseService.supabase
       .from('admissions')
-      .select('*');
+      .select('*');  // Fetch all fields
 
     if (error) {
       console.error('Error fetching admission students:', error);
@@ -38,7 +38,7 @@ export class FileManagementComponent implements OnInit {
     this.isAdmission = false;
     const { data, error } = await this.supabaseService.supabase
       .from('enrollment_data')
-      .select('*');
+      .select('*');  // Fetch all fields
 
     if (error) {
       console.error('Error fetching enrollment students:', error);
