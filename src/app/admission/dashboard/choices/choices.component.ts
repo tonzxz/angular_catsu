@@ -25,19 +25,24 @@ export class ChoicesComponent implements OnInit {
       this.isApplicationSubmitted = !!userData && !!userData.id; // Adjust this condition as per your logic
 
       if (userData && userData.username) {
-        const { data, error } = await this.supabaseService.supabase
-          .from('admissions')
-          .select('payment, exam_result')
-          .eq('username', userData.username)
-          .single();
+        try {
+          const { data, error } = await this.supabaseService.supabase
+            .from('admissions')
+            .select('payment, approve')
+            .eq('username', userData.username)
+            .single();
 
-        if (error) {
-          console.error('Error fetching payment and result data:', error);
-          return;
+          if (error) {
+            console.error('Error fetching payment and result data:', error);
+            return;
+          }
+
+          // Check if payment and approve columns are not null
+          this.isPaymentSubmitted = !!data?.payment;
+          this.examResult = data?.approve ? 'Passed' : null;
+        } catch (error) {
+          console.error('Error during Supabase query:', error);
         }
-
-        this.isPaymentSubmitted = !!data?.payment;
-        this.examResult = data?.exam_result ?? null;
       }
     }
   }
@@ -57,6 +62,6 @@ export class ChoicesComponent implements OnInit {
   }
 
   proceedToEnrollment() {
-    this.router.navigate(['/enrollment/dashboard']);
+    this.router.navigate(['/enrollment/dashboard/forms']);
   }
 }

@@ -1,238 +1,3 @@
-<!-- <div class="container">
-    <div class="left-pane">
-        <div class="top">
-            <img src="assets/catsu.png" alt="Catanduanes State University">
-        </div>
-        <div class="middle">
-            <img src="assets/studyante.png" alt="Students" class="floating-image">
-        </div>
-        <div class="bottom">
-            <h1 class="university-name">Catanduanes State University</h1>
-            <h2 class="system-name">Online Enrollment System</h2>
-        </div>
-    </div>
-    <div class="right-pane">
-        <main>
-            <form id="enrollmentForm" (submit)="onSubmit($event)">
-                <section id="step1" class="form-section" [class.hidden]="currentStep !== 0">
-                    <h4>Step 1: Medical Examination</h4>
-                    <p>Comply with the requirements for Medical Examination Certificate:</p>
-                    <ul>
-                        <li>CBC</li>
-                        <li>Chest X-ray</li>
-                        <li>Drug Test</li>
-                    </ul>
-                    <p>Note: All medical results and requirements shall be submitted to the Medical and Dental Clinic Office for evaluation and possible intervention, subject to Data Privacy Act. No student will be refused enrollment due to inability to submit medical (CBC, X-ray, Drug Test) requirements.</p>
-                    <div class="file-upload">
-                        <label for="cbc">Upload CBC</label>
-                        <input type="file" id="cbc" name="cbc" (change)="onFileChange($event, 'cbc')" required>
-                        <span class="file-name">{{ cbcFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="chestXray">Upload Chest X-ray</label>
-                        <input type="file" id="chestXray" name="chestXray" (change)="onFileChange($event, 'chestXray')" required>
-                        <span class="file-name">{{ chestXrayFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="drugTest">Upload Drug Test</label>
-                        <input type="file" id="drugTest" name="drugTest" (change)="onFileChange($event, 'drugTest')" required>
-                        <span class="file-name">{{ drugTestFileName }}</span>
-                    </div>
-                    <button type="button" (click)="nextStep()">Next</button>
-                </section>
-                <section id="step2" class="form-section" [class.hidden]="currentStep !== 1">
-                    <button type="button" class="backButton" (click)="previousStep()"><i class="fas fa-arrow-left"></i> Back</button>
-                    <h4>Step 2: Document Submission</h4>
-                    <p>Proceed to the assigned venue and look for your Enrolling Adviser and submit the necessary documents listed below:</p>
-                    <ul>
-                        <li>Grade 12 SF 9 (Report Card) (original copy)</li>
-                        <li>Medical Certificate (original copy)</li>
-                        <li>Good Moral Certificate (original copy)</li>
-                        <li>ALS Certificate (For ALS Passers) (original copy)</li>
-                        <li>Certificate of Transfer/Honorable Dismissal for Transferees (original copy)</li>
-                    </ul>
-                    <div class="file-upload">
-                        <label for="reportCard">Upload Grade 12 SF 9 (Report Card)</label>
-                        <input type="file" id="reportCard" name="reportCard" (change)="onFileChange($event, 'reportCard')" required>
-                        <span class="file-name">{{ reportCardFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="medicalCertificate">Upload Medical Certificate</label>
-                        <input type="file" id="medicalCertificate" name="medicalCertificate" (change)="onFileChange($event, 'medicalCertificate')" required>
-                        <span class="file-name">{{ medicalCertificateFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="goodMoralCertificate">Upload Good Moral Certificate</label>
-                        <input type="file" id="goodMoralCertificate" name="goodMoralCertificate" (change)="onFileChange($event, 'goodMoralCertificate')" required>
-                        <span class="file-name">{{ goodMoralCertificateFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="alsCertificate">Upload ALS Certificate (For ALS Passers)</label>
-                        <input type="file" id="alsCertificate" name="alsCertificate" (change)="onFileChange($event, 'alsCertificate')" required>
-                        <span class="file-name">{{ alsCertificateFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="transferCertificate">Upload Certificate of Transfer/Honorable Dismissal (For Transferees)</label>
-                        <input type="file" id="transferCertificate" name="transferCertificate" (change)="onFileChange($event, 'transferCertificate')" required>
-                        <span class="file-name">{{ transferCertificateFileName }}</span>
-                    </div>
-                    <button type="button" (click)="nextStep()">Next</button>
-                </section>
-                <section id="step3" class="form-section" [class.hidden]="currentStep !== 2">
-                    <button type="button" class="backButton" (click)="previousStep()"><i class="fas fa-arrow-left"></i> Back</button>
-                    <h4>Step 3: Tentative Enrollment Form</h4>
-                    <p>After submitting the documents, the Enrolling Adviser will give you the 3 copies of the Tentative Enrollment Form (TEF) and fill out the necessary information.</p>
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required>
-                    <label for="middleName">Middle Name:</label>
-                    <input type="text" id="middleName" name="middleName">
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required>
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" [(ngModel)]="address" required>
-                    <label for="course">Course:</label>
-                    <select id="course" name="course" [(ngModel)]="course" required>
-                        <option value="">Select Course</option>
-                        <option value="bs-civil-eng">Bachelor of Science in Civil Engineering</option>
-                        <option value="bs-comp-eng">Bachelor of Science in Computer Engineering</option>
-                        <option value="bs-arch">Bachelor of Science in Architecture</option>
-                        <option value="bs-bio">Bachelor of Science in Biology</option>
-                        <option value="bs-env-sci">Bachelor of Science in Environmental Science</option>
-                        <option value="bs-math">Bachelor of Science in Mathematics</option>
-                        <option value="ba-pol-sci">Bachelor of Arts in Political Science</option>
-                        <option value="ba-econ">Bachelor of Arts in Economics</option>
-                        <option value="bpa">Bachelor of Public Administration</option>
-                        <option value="ba-eng-lang">Bachelor of Arts in English Language</option>
-                        <option value="bs-accountancy">Bachelor of Science in Accountancy</option>
-                        <option value="bs-ais">Bachelor of Science in Accounting Information System</option>
-                        <option value="bs-ba-fm">Bachelor of Science in Business Administration - Major in Financial Management</option>
-                        <option value="bs-ba-hrdm">Bachelor of Science in Business Administration - Major in Human Resource Development Management</option>
-                        <option value="bs-ba-marketing">Bachelor of Science in Business Administration - Major in Marketing Management</option>
-                        <option value="bs-entrepreneurship">Bachelor of Science in Entrepreneurship</option>
-                        <option value="bs-internal-auditing">Bachelor of Science in Internal Auditing</option>
-                        <option value="bs-office-admin">Bachelor of Science in Office Administration</option>
-                        <option value="bs-nursing">Bachelor of Science in Nursing</option>
-                        <option value="bs-nutrition-dietetics">Bachelor of Science in Nutrition and Dietetics</option>
-                        <option value="bs-industrial-tech-auto">Laddered Bachelor of Science in Industrial Technology - Major in Automotive</option>
-                        <option value="bs-industrial-tech-drafting">Laddered Bachelor of Science in Industrial Technology - Major in Drafting</option>
-                        <option value="bs-industrial-tech-electrical">Laddered Bachelor of Science in Industrial Technology - Major in Electrical</option>
-                        <option value="bs-industrial-tech-electronics">Laddered Bachelor of Science in Industrial Technology - Major in Electronics</option>
-                        <option value="bs-industrial-tech-food">Laddered Bachelor of Science in Industrial Technology - Major in Food and Service Management</option>
-                        <option value="bs-industrial-tech-garments">Laddered Bachelor of Science in Industrial Technology - Major in Garments, Fashion and Design</option>
-                        <option value="bs-industrial-tech-mechanical">Laddered Bachelor of Science in Industrial Technology - Major in Mechanical</option>
-                        <option value="bs-agriculture-animal">Bachelor of Science in Agriculture - Major in Animal Husbandry</option>
-                        <option value="bs-agriculture-crop">Bachelor of Science in Agriculture - Major in Crop Science</option>
-                        <option value="bs-agri-business">Bachelor of Science in Agri-Business</option>
-                        <option value="bs-fisheries">Bachelor of Science in Fisheries</option>
-                        <option value="cert-agri-sci">Certificate in Agricultural Science</option>
-                        <option value="bs-elem-edu">Bachelor of Elementary Education</option>
-                        <option value="bs-secondary-edu-eng">Bachelor of Science in Secondary Education - Major in English</option>
-                        <option value="bs-secondary-edu-fil">Bachelor of Science in Secondary Education - Major in Filipino</option>
-                        <option value="bs-secondary-edu-math">Bachelor of Science in Secondary Education - Major in Mathematics</option>
-                        <option value="bs-secondary-edu-bio">Bachelor of Science in Secondary Education - Major in Biological Science</option>
-                        <option value="bs-secondary-edu-soc">Bachelor of Science in Secondary Education - Major in Social Studies</option>
-                        <option value="bs-secondary-edu-mape">Bachelor of Science in Secondary Education - Major in Music, Arts and Physical Education</option>
-                        <option value="bs-tech-voc-te-electronics">Bachelor of Science in Technical-Vocational Teacher Education - Major in Electronics Technology</option>
-                        <option value="bs-tech-voc-te-food">Bachelor of Science in Technical-Vocational Teacher Education - Major in Food and Service Management</option>
-                        <option value="bs-culture-arts-edu">Bachelor of Science in Culture and Arts Education</option>
-                        <option value="bs-phys-edu">Bachelor of Science in Physical Education</option>
-                        <option value="bs-info-systems">Bachelor of Science in Information Systems</option>
-                        <option value="bs-info-tech">Bachelor of Science in Information Technology</option>
-                        <option value="bs-comp-sci">Bachelor of Science in Computer Science</option>
-                        <option value="bs-entertainment-multimedia-game">Bachelor of Science in Entertainment and Multimedia Computing - Major in Game Development</option>
-                        <option value="bs-entertainment-multimedia-digital">Bachelor of Science in Entertainment and Multimedia Computing - Major in Digital Animation</option>
-                        <option value="bs-library-info-sci">Bachelor of Science in Library in Information Science</option>
-                    </select>
-                    <label for="year">Year Level:</label>
-                    <select id="year" name="year" [(ngModel)]="year" required>
-                        <option value="">Select</option>
-                        <option value="First Year">First Year</option>
-                        <option value="Second Year">Second Year</option>
-                        <option value="Third Year">Third Year</option>
-                        <option value="Fourth Year">Fourth Year</option>
-                        <option value="Fifth Year">Fifth Year</option>
-                    </select>
-                    <label for="section">Section:</label>
-                    <input type="text" id="section" name="section" [(ngModel)]="section" required>
-                    <label for="lastSchool">Name of Last School Attended:</label>
-                    <input type="text" id="lastSchool" name="lastSchool" [(ngModel)]="lastSchool" required>
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" [(ngModel)]="email" required>
-                    <label for="reEmail">Re-enter Email Address:</label>
-                    <input type="email" id="reEmail" name="reEmail" [(ngModel)]="reEmail" required>
-                    <div id="emailError" class="error"></div>
-                    <label for="contactNumber">Contact Number:</label>
-                    <input type="text" id="contactNumber" name="contactNumber" [(ngModel)]="contactNumber" required>
-                    <div class="file-upload">
-                        <label for="birthCertificate">Upload Photocopy of NSO/PSA Birth Certificate</label>
-                        <input type="file" id="birthCertificate" name="birthCertificate" (change)="onFileChange($event, 'birthCertificate')" required>
-                        <span class="file-name">{{ birthCertificateFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="graduationCertificate">Upload Certificate of Graduation / Copy of Diploma</label>
-                        <input type="file" id="graduationCertificate" name="graduationCertificate" (change)="onFileChange($event, 'graduationCertificate')" required>
-                        <span class="file-name">{{ graduationCertificateFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="pictures">Upload 2x2 Picture</label>
-                        <input type="file" id="pictures" name="pictures" (change)="onFileChange($event, 'pictures')" required>
-                        <span class="file-name">{{ picturesFileName }}</span>
-                    </div>
-                    <div class="file-upload">
-                        <label for="eSignature">Upload eSignature</label>
-                        <input type="file" id="eSignature" name="eSignature" (change)="onFileChange($event, 'eSignature')" required>
-                        <span class="file-name">{{ eSignatureFileName }}</span>
-                    </div>
-                    <div>
-                        <label for="paymentStatus">Payment Status:</label>
-                        <select id="paymentStatus" name="paymentStatus" [(ngModel)]="paymentStatus" required>
-                            <option value="">Select</option>
-                            <option value="paid">Paid</option>
-                            <option value="notPaid">Not Paid</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="scholarship">Scholarship:</label>
-                        <select id="scholarship" name="scholarship" [(ngModel)]="scholarship">
-                            <option value="">Select</option>
-                                <option value="CHED Scholarship">CHED Scholarship</option>
-                                <option value="OWWA Scholarships">OWWA Scholarships</option>
-                                <option value="DOST Scholarship">DOST Scholarship</option>
-                                <option value="SM Scholarship">SM Scholarship</option>
-                                <option value="Aboitiz Scholarship Program">Aboitiz Scholarship Program</option>
-                                <option value="Megaworld Scholarship">Megaworld Scholarship</option>
-                                <option value="Security Bank Scholarship">Security Bank Scholarship</option>
-                                <option value="CHED Medical Scholarship">CHED Medical Scholarship</option>
-                                <option value="DOH Pre-Service Scholarship">DOH Pre-Service Scholarship</option>
-                                <option value="Ayala Foundation Scholarship">Ayala Foundation Scholarship</option>
-                                <option value="Hawak Kamay Scholarship">Hawak Kamay Scholarship</option>
-                                <option value="CHED Tulong Dunong Scholarship">CHED Tulong Dunong Scholarship</option>
-                                <option value="Iskolar ni Juan">Iskolar ni Juan</option>
-                                <option value="Landbank Scholarship">Landbank Scholarship</option>
-                                <option value="PHINMA Scholarship">PHINMA Scholarship</option>
-                                <option value="CHED CoScho Scholarship">CHED CoScho Scholarship</option>
-                        </select>
-                    </div>
-                    <button type="submit">Submit Enrollment</button>
-                </section>
-            </form>
-        </main>
-    </div>
-
-    <div id="consentModal" class="modal" [class.show]="modalVisible">
-        <div class="modal-content">
-            <span class="close" (click)="closeModal()">&times;</span>
-            <h2>Consent Form</h2>
-            <p>Please review your information before submitting. Are you sure you want to submit?</p>
-            <div>
-                <input type="checkbox" id="agreeCheckbox" [(ngModel)]="agreeCheckbox">
-                <label for="agreeCheckbox">I have read and agree to the terms and conditions.</label>
-            </div>
-            <button id="confirmSubmit" class="confirm" [disabled]="!agreeCheckbox" (click)="confirmSubmission()">Submit</button>
-        </div>
-    </div>
-</div> -->
-
 <div class="container" #container>
     <div class="left-pane">
       <div class="top">
@@ -319,16 +84,12 @@
             <p>After submitting the documents, the Enrolling Adviser will give you the 3 copies of the Tentative Enrollment Form (TEF) and fill out the necessary information.</p>
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required>
-            
             <label for="middleName">Middle Name:</label>
-            <input type="text" id="middleName" name="middleName" [(ngModel)]="middleName">
-            
+            <input type="text" id="middleName" name="middleName" [(ngModel)]="middleName" required>
             <label for="lastName">Last Name:</label>
             <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required>
-            
             <label for="address">Address:</label>
             <input type="text" id="address" name="address" [(ngModel)]="address" required>
-            
             <label for="course">Course:</label>
             <select id="course" name="course" [(ngModel)]="course" required>
               <option value="">Select</option>
@@ -366,7 +127,8 @@
               <option value="Bachelor of Science in Computer Science">Bachelor of Science in Computer Science</option>
               <option value="Bachelor of Science in Entertainment and Multimedia Computing">Bachelor of Science in Entertainment and Multimedia Computing</option>
               <option value="Bachelor of Library in Information Science">Bachelor of Library in Information Science</option>
-              <option value="Bachelor of Science in Agriculture">Bachelor of Science in Agriculture</option>            </select>
+              <option value="Bachelor of Science in Agriculture">Bachelor of Science in Agriculture</option>            
+            </select>
             <label for="year">Year Level:</label>
             <select id="year" name="year" [(ngModel)]="year" required>
               <option value="">Select</option>
@@ -383,11 +145,10 @@
             <label for="email">Email Address:</label>
             <input type="email" id="email" name="email" [(ngModel)]="email" required>
             <label for="reEmail">Re-enter Email Address:</label>
-                        <input type="email" id="reEmail" name="reEmail" [(ngModel)]="reEmail" required>
+            <input type="email" id="reEmail" name="reEmail" [(ngModel)]="reEmail" required>
             <div id="emailError" class="error"></div>
             <label for="contactNumber">Contact Number:</label>
             <input type="text" id="contactNumber" name="contactNumber" [(ngModel)]="contactNumber" required>
-            
             <div class="file-upload">
               <label for="birthCertificate">Upload Photocopy of NSO/PSA Birth Certificate</label>
               <input type="file" id="birthCertificate" name="birthCertificate" (change)="onFileChange($event, 'birthCertificate')">
@@ -435,7 +196,8 @@
                 <option value="Iskolar ni Juan">Iskolar ni Juan</option>
                 <option value="Landbank Scholarship">Landbank Scholarship</option>
                 <option value="PHINMA Scholarship">PHINMA Scholarship</option>
-                <option value="CHED CoScho Scholarship">CHED CoScho Scholarship</option>              </select>
+                <option value="CHED CoScho Scholarship">CHED CoScho Scholarship>              
+              </select>
             </div>
             <button type="submit" (click)="saveFormDataToSupabase()">Submit Enrollment</button>
           </section>

@@ -14,9 +14,12 @@ import { FormsComponent } from './enrollment/dashboard/forms/forms.component';
 import { LoginComponent } from './lms/dashboard/login/login.component';
 import { LMSDashboardComponent } from './lms/dashboard/dashboard.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
+  { path: '', component: MainDashboardComponent },
+
+  { path: 'landingpage', component: LandingPageComponent },
   { path: 'admission/dashboard', component: AdmissionDashboardComponent },
   { path: 'admission/dashboard/choices', component: ChoicesComponent },
   { path: 'admission/dashboard/choices/application-form', component: ApplicationFormComponent },
@@ -26,6 +29,7 @@ const routes: Routes = [
   { path: 'enrollment/dashboard/forms', component: FormsComponent },
   { path: 'lms/dashboard/login', component: LoginComponent },
   { path: 'lms/dashboard', component: LMSDashboardComponent },
+
   { path: 'admin/dashboard/file-management', component: FileManagementComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
@@ -42,7 +46,8 @@ const routes: Routes = [
     FormsComponent,
     LoginComponent,
     LMSDashboardComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    MainDashboardComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -258,7 +258,7 @@ export class FormsComponent implements OnInit {
         return null;
       }
 
-      const publicUrl = `${this.supabaseService.supabase}/storage/v1/object/public/${bucket}/${fileName}`;
+      const publicUrl = `https://hvqvmxakmursjidtfmdj.supabase.co/storage/v1/object/public/${bucket}/${fileName}`;
       console.log(`Public URL constructed:`, publicUrl);
       return publicUrl;
     } catch (e) {
