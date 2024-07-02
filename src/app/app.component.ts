@@ -1,17 +1,17 @@
+
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
-  imports: [RouterModule]
+  imports: [RouterModule, CommonModule]
 })
 export class AppComponent {
-  constructor(private router: Router) {}
-
-  navigateTo(path: string) {
-    this.router.navigate([path]);
+  title(title: any) {
+    throw new Error('Method not implemented.');
   }
 }
+

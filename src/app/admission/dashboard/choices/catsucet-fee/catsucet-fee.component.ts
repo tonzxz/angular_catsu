@@ -53,7 +53,7 @@ export class CatsucetFeeComponent implements OnInit {
     this.email = data.email || 'N/A';
     this.lastName = data.last_name || 'N/A';
     this.course = data.course || 'N/A';
-    this.uploadedFileUrl = data.payment ? `https://your-supabase-storage-url/${data.payment}` : null;
+    this.uploadedFileUrl = data.payment || null;
   }
 
   goBack() {
@@ -93,6 +93,8 @@ export class CatsucetFeeComponent implements OnInit {
       return;
     }
 
+    const fullUrl = `https://hvqvmxakmursjidtfmdj.supabase.co/storage/v1/object/public/payment/${imageUrl}`;
+
     const userDataString = localStorage.getItem('userData');
     if (!userDataString) {
       alert('User data is not available.');
@@ -107,7 +109,7 @@ export class CatsucetFeeComponent implements OnInit {
 
     const { data, error } = await this.supabaseService.supabase
       .from('admissions')
-      .update({ payment: imageUrl })
+      .update({ payment: fullUrl })
       .eq('username', userData.username);
 
     if (error) {
@@ -116,7 +118,7 @@ export class CatsucetFeeComponent implements OnInit {
       return;
     }
 
-    this.uploadedFileUrl = `https://your-supabase-storage-url/${imageUrl}`;
+    this.uploadedFileUrl = fullUrl;
     this.isModalVisible = true; // Show modal
   }
 

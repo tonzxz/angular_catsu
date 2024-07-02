@@ -1,12 +1,12 @@
 <div class="container max-w-6xl mx-auto p-8 bg-white shadow-md rounded-lg">
     <h1 class="text-3xl font-bold text-center mb-4">CATSU Online Admission System Admin</h1>
     
-    <div class="flex justify-center mb-4">
+    <div class="flex justify-center mb-4" *ngIf="!selectedStudent">
       <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2" (click)="fetchAdmissionStudents()">View Admissions</button>
       <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700" (click)="fetchEnrollmentStudents()">View Enrollments</button>
     </div>
     
-    <div *ngIf="students.length > 0" class="overflow-x-auto">
+    <div *ngIf="!selectedStudent && students.length > 0" class="overflow-x-auto">
       <table class="min-w-full bg-white">
         <thead>
           <tr>
@@ -34,71 +34,101 @@
     </div>
     
     <div *ngIf="selectedStudent" class="mt-6 p-4 bg-gray-100 rounded-lg shadow">
+      <button class="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" (click)="backToList()">Back to List</button>
       <h2 class="text-2xl font-semibold mb-4 text-center">{{ selectedStudent.given_name }} {{ selectedStudent.last_name }}</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <p><strong>ID:</strong> {{ selectedStudent.id }}</p>
-        <p><strong>Admission Type:</strong> {{ selectedStudent.admission_type }}</p>
-        <p><strong>Given Name:</strong> {{ selectedStudent.given_name }}</p>
-        <p><strong>Middle Name:</strong> {{ selectedStudent.middle_name }}</p>
-        <p><strong>Last Name:</strong> {{ selectedStudent.last_name }}</p>
-        <p><strong>Mother Name:</strong> {{ selectedStudent.mother_name }}</p>
-        <p><strong>Mother Occupation:</strong> {{ selectedStudent.mother_occupation }}</p>
-        <p><strong>Contact Number:</strong> {{ selectedStudent.contact_number }}</p>
-        <p><strong>Guardian:</strong> {{ selectedStudent.guardian }}</p>
-        <p><strong>Address:</strong> {{ selectedStudent.address }}</p>
-        <p><strong>Previous School:</strong> {{ selectedStudent.previous_school }}</p>
-        <p><strong>Strand:</strong> {{ selectedStudent.strand }}</p>
-        <p><strong>Applicant Type:</strong> {{ selectedStudent.applicant_type }}</p>
-        <p><strong>School:</strong> {{ selectedStudent.school }}</p>
-        <p><strong>Email:</strong> {{ selectedStudent.email }}</p>
-        <p><strong>Course:</strong> {{ selectedStudent.course }}</p>
-        <p><strong>Username:</strong> {{ selectedStudent.username }}</p>
-        <p><strong>Adcon Number:</strong> {{ selectedStudent.adcon_number }}</p>
-        <p><strong>Suffix:</strong> {{ selectedStudent.suffix }}</p>
-        <p><strong>Gender:</strong> {{ selectedStudent.gender }}</p>
-        <p><strong>Marital Status:</strong> {{ selectedStudent.marital_status }}</p>
-        <p><strong>Date of Birth:</strong> {{ selectedStudent.date_of_birth }}</p>
-        <p><strong>Place of Birth:</strong> {{ selectedStudent.place_of_birth }}</p>
-        <p><strong>Country of Birth:</strong> {{ selectedStudent.country_of_birth }}</p>
-        <p><strong>Country of Nationality:</strong> {{ selectedStudent.country_of_nationality }}</p>
-        <p><strong>Religious Affiliation:</strong> {{ selectedStudent.religious_affiliation }}</p>
-        <p><strong>Foreign Student:</strong> {{ selectedStudent.foreign_student }}</p>
-        <p><strong>LRN:</strong> {{ selectedStudent.lrn }}</p>
-        <p><strong>Language Spoken:</strong> {{ selectedStudent.language_spoken }}</p>
-        <p><strong>Foreign Language Spoken:</strong> {{ selectedStudent.foreign_language_spoken }}</p>
-        <p><strong>Working Student:</strong> {{ selectedStudent.working_student }}</p>
-        <p><strong>Photo:</strong> <img [src]="selectedStudent.photo" alt="Photo" class="max-w-xs"/></p>
-        <p><strong>Mobile Number:</strong> {{ selectedStudent.mobile_number }}</p>
-        <p><strong>Telephone Number:</strong> {{ selectedStudent.telephone_number }}</p>
-        <p><strong>Present Address:</strong> {{ selectedStudent.present_address }}</p>
-        <p><strong>Country:</strong> {{ selectedStudent.country }}</p>
-        <p><strong>Province:</strong> {{ selectedStudent.province }}</p>
-        <p><strong>City:</strong> {{ selectedStudent.city }}</p>
-        <p><strong>Barangay:</strong> {{ selectedStudent.barangay }}</p>
-        <p><strong>Zip Code:</strong> {{ selectedStudent.zip_code }}</p>
-        <p><strong>Permanent Address:</strong> {{ selectedStudent.permanent_address }}</p>
-        <p><strong>Same as Present Address:</strong> {{ selectedStudent.same_as_present }}</p>
-        <p><strong>Program:</strong> {{ selectedStudent.program }}</p>
-        <p><strong>Preferred Campus:</strong> {{ selectedStudent.preferred_campus }}</p>
-        <p><strong>Preferred Term:</strong> {{ selectedStudent.preferred_term }}</p>
-        <p><strong>Preferred Year Level:</strong> {{ selectedStudent.preferred_year_level }}</p>
-        <p><strong>High School:</strong> {{ selectedStudent.high_school }}</p>
-        <p><strong>High School Year:</strong> {{ selectedStudent.high_school_year }}</p>
-        <p><strong>College:</strong> {{ selectedStudent.college }}</p>
-        <p><strong>College Year:</strong> {{ selectedStudent.college_year }}</p>
-        <p><strong>Degree:</strong> {{ selectedStudent.degree }}</p>
-        <p><strong>Graduate School:</strong> {{ selectedStudent.graduate_school }}</p>
-        <p><strong>Graduate School Year:</strong> {{ selectedStudent.graduate_school_year }}</p>
-        <p><strong>Graduate Degree:</strong> {{ selectedStudent.graduate_degree }}</p>
-        <p><strong>TOR:</strong> <a [href]="selectedStudent.tor" target="_blank">{{ selectedStudent.tor }}</a></p>
-        <p><strong>Created At:</strong> {{ selectedStudent.created_at }}</p>
+      
+      <!-- Personal Information -->
+      <div class="mb-4 p-4 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-bold mb-2">Personal Information</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <p><strong>ID:</strong> {{ selectedStudent.id }}</p>
+          <p><strong>Given Name:</strong> {{ selectedStudent.given_name }}</p>
+          <p><strong>Middle Name:</strong> {{ selectedStudent.middle_name }}</p>
+          <p><strong>Last Name:</strong> {{ selectedStudent.last_name }}</p>
+          <p><strong>Gender:</strong> {{ selectedStudent.gender }}</p>
+          <p><strong>Date of Birth:</strong> {{ selectedStudent.date_of_birth }}</p>
+          <p><strong>Place of Birth:</strong> {{ selectedStudent.place_of_birth }}</p>
+          <p><strong>Country of Birth:</strong> {{ selectedStudent.country_of_birth }}</p>
+          <p><strong>Marital Status:</strong> {{ selectedStudent.marital_status }}</p>
+          <p><strong>Country of Nationality:</strong> {{ selectedStudent.country_of_nationality }}</p>
+          <p><strong>Religious Affiliation:</strong> {{ selectedStudent.religious_affiliation }}</p>
+          <p><strong>Foreign Student:</strong> {{ selectedStudent.foreign_student }}</p>
+        </div>
+      </div>
+      
+      <!-- Contact Information -->
+      <div class="mb-4 p-4 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-bold mb-2">Contact Information</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <p><strong>Email:</strong> {{ selectedStudent.email }}</p>
+          <p><strong>Contact Number:</strong> {{ selectedStudent.contact_number }}</p>
+          <p><strong>Mobile Number:</strong> {{ selectedStudent.mobile_number }}</p>
+          <p><strong>Telephone Number:</strong> {{ selectedStudent.telephone_number }}</p>
+          <p><strong>Present Address:</strong> {{ selectedStudent.present_address }}</p>
+          <p><strong>Permanent Address:</strong> {{ selectedStudent.permanent_address }}</p>
+        </div>
+      </div>
+      
+      <!-- Academic Information -->
+      <div class="mb-4 p-4 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-bold mb-2">Academic Information</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <p><strong>Previous School:</strong> {{ selectedStudent.previous_school }}</p>
+          <p><strong>Strand:</strong> {{ selectedStudent.strand }}</p>
+          <p><strong>Course:</strong> {{ selectedStudent.course }}</p>
+          <p><strong>School:</strong> {{ selectedStudent.school }}</p>
+          <p><strong>Applicant Type:</strong> {{ selectedStudent.applicant_type }}</p>
+          <p><strong>Preferred Campus:</strong> {{ selectedStudent.preferred_campus }}</p>
+          <p><strong>Preferred Term:</strong> {{ selectedStudent.preferred_term }}</p>
+          <p><strong>Preferred Year Level:</strong> {{ selectedStudent.preferred_year_level }}</p>
+          <p><strong>High School:</strong> {{ selectedStudent.high_school }}</p>
+          <p><strong>High School Year:</strong> {{ selectedStudent.high_school_year }}</p>
+          <p><strong>College:</strong> {{ selectedStudent.college }}</p>
+          <p><strong>College Year:</strong> {{ selectedStudent.college_year }}</p>
+          <p><strong>Degree:</strong> {{ selectedStudent.degree }}</p>
+          <p><strong>Graduate School:</strong> {{ selectedStudent.graduate_school }}</p>
+          <p><strong>Graduate School Year:</strong> {{ selectedStudent.graduate_school_year }}</p>
+          <p><strong>Graduate Degree:</strong> {{ selectedStudent.graduate_degree }}</p>
+        </div>
+      </div>
+      
+      <!-- Family Information -->
+      <div class="mb-4 p-4 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-bold mb-2">Family Information</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <p><strong>Mother Name:</strong> {{ selectedStudent.mother_name }}</p>
+          <p><strong>Mother Occupation:</strong> {{ selectedStudent.mother_occupation }}</p>
+          <p><strong>Guardian:</strong> {{ selectedStudent.guardian }}</p>
+        </div>
+      </div>
+      
+      <!-- Images -->
+      <div class="mb-4 p-4 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-bold mb-2">Uploaded Documents</h3>
+        <div class="grid grid-cols-1 gap-4">
+          <div *ngIf="selectedStudent.photo">
+            <p><strong>Photo:</strong></p>
+            <img [src]="selectedStudent.photo" alt="Photo" class="max-w-xs"/>
+          </div>
+          <div *ngIf="selectedStudent.tor">
+            <p><strong>Transcript of Records (TOR):</strong></p>
+            <img [src]="selectedStudent.tor" alt="Photo" class="max-w-xs"/>
+          </div>
+        </div>
       </div>
       
       <div class="mt-4 flex justify-center">
-        <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 mr-2" (click)="updateApprovalStatus(true)">Approve</button>
-        <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700" (click)="updateApprovalStatus(false)">Reject</button>
+        <div *ngIf="selectedStudent.approve === null || selectedStudent.approve === undefined">
+          <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 mr-2" (click)="updateApprovalStatus(true)">Approve</button>
+          <button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700" (click)="updateApprovalStatus(false)">Reject</button>
+        </div>
+        <div *ngIf="selectedStudent.approve === true" class="px-4 py-2 text-white bg-green-500 rounded">
+          Approved
+        </div>
+        <div *ngIf="selectedStudent.approve === false" class="px-4 py-2 text-white bg-red-500 rounded">
+          Rejected
+        </div>
       </div>
-      <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" (click)="backToList()">Back to List</button>
     </div>
   </div>
   

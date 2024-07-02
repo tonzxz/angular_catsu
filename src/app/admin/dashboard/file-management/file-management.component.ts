@@ -29,8 +29,8 @@ export class FileManagementComponent implements OnInit {
       return;
     }
 
-    console.log("Admission students fetched:", data);
     this.students = data;
+    console.log("Admission students fetched:", this.students);
   }
 
   async fetchEnrollmentStudents() {
@@ -45,8 +45,8 @@ export class FileManagementComponent implements OnInit {
       return;
     }
 
-    console.log("Enrollment students fetched:", data);
     this.students = data;
+    console.log("Enrollment students fetched:", this.students);
   }
 
   showStudentDetails(student: any) {
@@ -60,7 +60,6 @@ export class FileManagementComponent implements OnInit {
     console.log(`Updating approval status to ${approve} for`, this.selectedStudent);
     const tableName = this.isAdmission ? 'admissions' : 'enrollment_data';
     
-    // Create an object to hold the update fields
     let updateFields: any = { approve: approve };
 
     if (approve && !this.isAdmission) {
@@ -68,7 +67,6 @@ export class FileManagementComponent implements OnInit {
       const schoolEmail = `student_${studentNumber}@catsu.edu.ph`;
       const password = 'testing';  // Ideally, this should be a randomly generated secure password
 
-      // Add email and password to the update fields
       updateFields.school_email = schoolEmail;
       updateFields.school_password = password;
 
@@ -88,9 +86,7 @@ export class FileManagementComponent implements OnInit {
       return;
     }
 
-    // Refresh the list to reflect the updated status
-    this.isAdmission ? this.fetchAdmissionStudents() : this.fetchEnrollmentStudents();
-    this.selectedStudent = null;
+    this.selectedStudent.approve = approve;
   }
 
   backToList() {

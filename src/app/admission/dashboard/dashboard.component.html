@@ -11,7 +11,9 @@
         <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" (click)="showForm('higher')">Higher Education</button>
       </div>
       <div #formContainer id="form-container" class="space-y-4"></div>
-      <button id="login-page-button" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mt-4 w-full" (click)="showLoginForm()">Login</button>
+      <p id="login-page-button" class="text-center mb-4">
+        <a routerLink="/login" class="text-blue-500 hover:text-blue-700">Already applied? Login now!</a>
+      </p>
     </div>
   </div>
   

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule } from '@angular/forms';
 
 import { AdmissionDashboardComponent } from './admission/dashboard/dashboard.component';
 import { ChoicesComponent } from './admission/dashboard/choices/choices.component';
@@ -9,12 +9,14 @@ import { ApplicationFormComponent } from './admission/dashboard/choices/applicat
 import { CatsucetFeeComponent } from './admission/dashboard/choices/catsucet-fee/catsucet-fee.component';
 import { ApplicationResultComponent } from './admission/dashboard/choices/application-result/application-result.component';
 import { EnrollmentDashboardComponent } from './enrollment/dashboard/dashboard.component';
-import { FileManagementComponent } from './admin/dashboard/file-management/file-management.component'; 
+import { FileManagementComponent } from './admin/dashboard/file-management/file-management.component';
 import { FormsComponent } from './enrollment/dashboard/forms/forms.component';
 import { LoginComponent } from './lms/dashboard/login/login.component';
 import { LMSDashboardComponent } from './lms/dashboard/dashboard.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
+  { path: '', component: LandingPageComponent },
   { path: 'admission/dashboard', component: AdmissionDashboardComponent },
   { path: 'admission/dashboard/choices', component: ChoicesComponent },
   { path: 'admission/dashboard/choices/application-form', component: ApplicationFormComponent },
@@ -24,12 +26,8 @@ const routes: Routes = [
   { path: 'enrollment/dashboard/forms', component: FormsComponent },
   { path: 'lms/dashboard/login', component: LoginComponent },
   { path: 'lms/dashboard', component: LMSDashboardComponent },
-
-
-
-  { path: 'admin/dashboard/file-management', component: FileManagementComponent }, // Add route for admin component
-  { path: '', redirectTo: '/admission/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/admission/dashboard' }
+  { path: 'admin/dashboard/file-management', component: FileManagementComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -43,7 +41,8 @@ const routes: Routes = [
     FileManagementComponent,
     FormsComponent,
     LoginComponent,
-    LMSDashboardComponent
+    LMSDashboardComponent,
+    LandingPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
